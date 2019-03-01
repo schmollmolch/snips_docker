@@ -1,0 +1,14 @@
+version: "2"
+services:
+  snips:
+    image: snipsdocker/platform:x86-latest
+    links:
+      - mqtt
+    volumes:
+      - ./assistant:/usr/share/snips/assistant
+    command: --mqtt mqtt:1883 --verbose
+
+  mqtt:
+    image: eclipse-mosquitto:latest
+    ports:
+      - "1883:1883" #mqtt
